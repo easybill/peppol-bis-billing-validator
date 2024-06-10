@@ -4,7 +4,7 @@
 
 ## Introduction
 `peppol-bis-billing-validator` is a small service for validating XML against the official
-Peppol BIS Billing 3.0 schematron rules. It exposes an validating endpoint which takes the 
+Peppol BIS Billing 3.0 schematron rules. It exposes a validating endpoint which takes the 
 to be validated XML and returns the schematron report. The HTTP status code indicates if the
 provided XML is valid (200) or has issues (400).
 
@@ -20,7 +20,7 @@ XML.
 > You can find a OpenAPI documentation after you started the service at /swagger
 ```yaml
   peppol-validator:
-    image: 'bolzerdev/peppol-bis-billing-validator:latest'
+    image: 'easybill/peppol-bis-billing-validator:latest'
     ports:
       - '8081:8080'
     healthcheck:
