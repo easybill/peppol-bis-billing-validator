@@ -13,8 +13,8 @@ jobs:
 
       - uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Setup JDK
         uses: actions/setup-java@v3
@@ -35,4 +35,4 @@ jobs:
         run: ./gradlew build -Dquarkus.package.jar.type=uber-jar
 
       - name: Build images
-        run: docker buildx build --platform=linux/amd64 --platform=linux/arm64 -t bolzerdev/peppol-bis-billing-validator:${{github.ref_name}} -t bolzerdev/peppol-bis-billing-validator:latest  . --push
+        run: docker buildx build --platform=linux/amd64 --platform=linux/arm64 -t easybill/peppol-bis-billing-validator:${{github.ref_name}} -t easybill/peppol-bis-billing-validator:latest  . --push
