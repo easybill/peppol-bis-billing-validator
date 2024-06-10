@@ -9,7 +9,7 @@ import org.eclipse.microprofile.openapi.annotations.info.License;
 @OpenAPIDefinition(
     info = @Info(
         title = "Peppol Validator API",
-        version = "0.1.0",
+        version = "0.2.0",
         contact = @Contact(
             name = "easybill GmbH",
             url = "https://github.com/easybill",

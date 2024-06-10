@@ -1,5 +1,5 @@
 # peppol-bis-billing-validator
-[![Generic badge](https://img.shields.io/badge/Version-0.1.0-important.svg)]()
+[![Generic badge](https://img.shields.io/badge/Version-0.2.0-important.svg)]()
 [![Generic badge](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
 ## Introduction
@@ -23,6 +23,8 @@ XML.
     image: 'easybill/peppol-bis-billing-validator:latest'
     ports:
       - '8081:8080'
+    environment:
+        JAVA_TOOL_OPTIONS: -Xmx512m
     healthcheck:
       test: curl --fail http://localhost:8081/health || exit 0
       interval: 10s
