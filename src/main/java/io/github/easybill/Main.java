@@ -3,6 +3,8 @@ package io.github.easybill;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.annotations.QuarkusMain;
 
+import java.nio.charset.StandardCharsets;
+
 @QuarkusMain
 public class Main {
 
@@ -17,7 +19,7 @@ public class Main {
                 throw new Exception("could not read banner file");
             }
 
-            System.out.println(new String(bannerStream.readAllBytes()));
+            System.out.println(new String(bannerStream.readAllBytes(), StandardCharsets.UTF_8));
         }
     }
 }
