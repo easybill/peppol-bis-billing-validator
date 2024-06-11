@@ -16,16 +16,16 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
-          java-version: '20'
+          java-version: '21'
           cache: 'gradle'
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
         with:
-          gradle-version: 8.6
+          gradle-version: 8.7
 
       - name: Main Spotbugs with Gradle Wrapper
-        run: ./gradlew spotbugsMain
+        run: gradle spotbugsMain
 
       - name: Test Spotbugs with Gradle Wrapper
-        run: ./gradlew spotbugsTest
+        run: gradle spotbugsTest
