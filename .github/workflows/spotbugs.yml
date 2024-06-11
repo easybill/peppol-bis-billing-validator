@@ -19,13 +19,8 @@ jobs:
           java-version: '20'
           cache: 'gradle'
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
-        with:
-          gradle-version: 8.6
-
-      - name: Main Spotbugs with Gradle Wrapper
+      - name: Main Spotbugs
         run: ./gradlew spotbugsMain
 
-      - name: Test Spotbugs with Gradle Wrapper
+      - name: Test Spotbugs
         run: ./gradlew spotbugsTest

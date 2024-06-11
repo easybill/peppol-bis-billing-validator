@@ -1,4 +1,4 @@
-name: "Tests"
+ name: "Tests"
 
 on:
   push:
@@ -8,13 +8,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
         include:
           - { operating-system: 'ubuntu-latest', java-version: '19' }
           - { operating-system: 'ubuntu-latest', java-version: '21' }
+
+    runs-on: ${{ matrix.operating-system }}
 
     steps:
       - uses: actions/checkout@v4
@@ -25,11 +25,6 @@ jobs:
           distribution: 'corretto'
           java-version: ${{ matrix.java-version }}
           cache: 'gradle'
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
-        with:
-          gradle-version: 8.6
 
       - name: Run tests with gradle wrapper
         run: ./gradlew test

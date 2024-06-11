@@ -19,10 +19,5 @@ jobs:
           java-version: '20'
           cache: 'gradle'
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
-        with:
-          gradle-version: 8.6
-
-      - name: Check codestyle with Gradle Wrapper
+      - name: Check code style
         run: ./gradlew spotlessCheck
