@@ -23,11 +23,16 @@ jobs:
           java-version: '20'
           cache: 'gradle'
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: 8.7
+
       - name: Create new buildx builder
         run: docker buildx create --name custom_builder --use
 
       - name: Build application
-        run: ./gradlew build -Dquarkus.package.jar.type=uber-jar
+        run: gradle build -Dquarkus.package.jar.type=uber-jar
 
       - name: Build images
         run: docker buildx build --platform=linux/amd64 --platform=linux/arm64 -t easybill/peppol-bis-billing-validator:${{github.ref_name}} -t easybill/peppol-bis-billing-validator:latest  . --push
