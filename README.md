@@ -1,17 +1,16 @@
 # peppol-bis-billing-validator
-[![Generic badge](https://img.shields.io/badge/Version-0.2.0-important.svg)]()
+![Docker Image Version](https://img.shields.io/docker/v/easybill/peppol-bis-billing-validator)
 [![Generic badge](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
 ## Introduction
 `peppol-bis-billing-validator` is a small service for validating XML against the official
-Peppol BIS Billing 3.0 schematron rules. It exposes a validating endpoint which takes the 
+Peppol BIS Billing 3.0 schematron rules. It exposes a validation endpoint which takes the 
 to be validated XML and returns the schematron report. The HTTP status code indicates if the
 provided XML is valid (200) or has issues (400).
 
 ## Usage
-This service was mainly designed with docker in mind. So general idea is to use the following
-docker image and make HTTP-Requests from the main application to the service for validation the
-XML.
+This service was mainly designed with containerization in mind. So general idea is to use the following
+docker image and make HTTP-Requests from the main application to the service for validation.
 
 - modifying / creating docker-compose.yaml
 
@@ -36,7 +35,7 @@ XML.
 docker compose up --detach --wait --wait-timeout 30
 ```
 
-- Example of using the service (PHP)
+- Example of using this service (PHP)
 ```PHP
 <?php
 
@@ -65,7 +64,7 @@ final class PeppolValidator
 
 - Example response in case the XML is invalid
 
-> The `svrl:failed-assert` elements are relevant to be inspected. They contain the error message. The 
+> The `svrl:failed-assert` elements are relevant to be inspected. They contain the error message. 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" title="Rules for Peppol BIS 3.0 Billing" schemaVersion="iso">
@@ -122,4 +121,4 @@ final class PeppolValidator
 ```
 
 ## Issues & Contribution
-Feel free to create pull-requests or an issue if you have trouble with this service or any related resource. 
+Feel free to create pull-requests or issues if you have trouble with this service or any related resources. 

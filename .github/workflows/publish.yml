@@ -19,7 +19,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'corretto'
+          distribution: 'temurin'
           java-version: '21'
           cache: 'gradle'
 
@@ -34,5 +34,16 @@ jobs:
       - name: Build application
         run: gradle build -Dquarkus.package.jar.type=uber-jar
 
-      - name: Build images
+      - name: Build images and push to dockerhub
         run: docker buildx build --platform=linux/amd64 --platform=linux/arm64 -t easybill/peppol-bis-billing-validator:${{github.ref_name}} -t easybill/peppol-bis-billing-validator:latest  . --push
+
+      - name: Push current readme.md as docker hub repository description
+        uses: christian-korneck/update-container-description-action@v1
+        env:
+          DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
+        with:
+          destination_container_repo: easybill/peppol-bis-billing-validator
+          provider: dockerhub
+          short_description: 'A small docker service to provide a validation endpoint for Peppol BIS Billing 3.0 rules'
+          readme_file: 'README.md'
